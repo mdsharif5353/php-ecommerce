@@ -5,14 +5,17 @@ if (!isset($_SESSION['admin'])) {
     exit();
 }
 ?>
-<!DOCTYPE html>
+
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <title>Admin Dashboard</title>
 </head>
 <body>
     <h2>Welcome Admin!</h2>
-    <!-- Admin Dashboard Content -->
     <a href="../logout.php">Logout</a>
 </body>
-</html>
+</html> -->
+<?php require 'admin_header.php'; ?>
+<?php require 'admin_layout.php'; ?>
+<?php require 'admin_footer.php'; ?>

@@ -19,7 +19,7 @@
     <!-- navbar -->
     <nav class="container navbar navbar-expand-lg">
         <div class="container-fluid">
-            <a class="navbar-brand text-white fs-2" href="#">EchoTech</a>
+            <a class="navbar-brand text-white fs-2" href="index.php">EchoTech</a>
             <div class="input-group w-50 text-center">
                 <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
                 <button class="btn btn-outline-danger" type="button" id="button-addon2">Search</button>
@@ -61,3 +61,31 @@
     </nav>
 
 </div>
+
+
+<!-- categories -->
+<!-- <nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="font-size: 15px;">
+                <?php
+                include 'includes/db_config.php'; 
+                $sql = "SELECT * FROM categories";
+                $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo '<li class="nav-item text-white">';
+                        echo '<a class="nav-link text-white" href="#">' . $row["name"] . '</a>';
+                        echo '</li>';
+                    }
+                }
+                $conn->close();
+                ?>
+            </ul>
+        </div>
+    </div>
+</nav> -->

@@ -1,0 +1,36 @@
+#sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #212B36;
+    color: #fff;
+    transition: all 0.3s;
+}
+
+#sidebar a:hover {
+    color: #ddd;
+}
+
+.nav-link {
+    color: #999494;
+}
+
+#content {
+    transition: margin-left 0.3s;
+    padding: 0;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+
+    #content {
+        margin-left: 0;
+    }
+}
+
+.rounded-image {
+    border-radius: 50%;
+    cursor: pointer;
+}
