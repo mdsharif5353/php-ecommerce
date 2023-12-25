@@ -42,13 +42,13 @@
     </nav>
 
     <!-- categories -->
-    <nav class="navbar navbar-expand-lg">
+    <!-- <nav class="navbar navbar-expand-lg">
         <div class="container">
             <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse " id="navbarTogglerDemo01">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 "style="font-size: 15px;">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 " style="font-size: 15px;">
                     <li class="nav-item text-white">
                         <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
                     </li>
@@ -58,7 +58,36 @@
                 </ul>
             </div>
         </div>
+    </nav> -->
+    <!-- categories -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="font-size: 15px;">
+                    <li class="nav-item text-white">
+                        <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
+                    </li>
+                    <?php
+                    include 'db_config.php';
+                    $sql = "SELECT * FROM categories";
+                    $result = $conn->query($sql);
+
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo '<li class="nav-item text-white">';
+                            echo '<a class="nav-link text-white" href="#">' . $row["name"] . '</a>';
+                            echo '</li>';
+                        }
+                    }
+                    ?>
+                </ul>
+            </div>
+        </div>
     </nav>
+
 
 </div>
 
@@ -72,7 +101,7 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="font-size: 15px;">
                 <?php
-                include 'includes/db_config.php'; 
+                include 'includes/db_config.php';
                 $sql = "SELECT * FROM categories";
                 $result = $conn->query($sql);
 

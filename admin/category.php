@@ -5,12 +5,33 @@ if (!isset($_SESSION['admin'])) {
     exit();
 }
 
-include '../includes/db_config.php'; // Include your database configuration file
+include '../includes/db_config.php';
 
-// Fetch categories from the database
-$sql = "SELECT * FROM categories";
+// Pagination settings
+$results_per_page = 5; // Number of categories per page
+
+// Determine the total number of categories
+$sql = "SELECT COUNT(*) AS total FROM categories";
 $result = $conn->query($sql);
+$row = $result->fetch_assoc();
+$total_categories = $row['total'];
 
+// Determine the total number of pages
+$total_pages = ceil($total_categories / $results_per_page);
+
+// Check the current page number from the URL
+if (!isset($_GET['page'])) {
+    $page = 1;
+} else {
+    $page = $_GET['page'];
+}
+
+// Calculate the SQL LIMIT starting row number for the query
+$offset = ($page - 1) * $results_per_page;
+
+// Fetch categories for the current page
+$sql = "SELECT * FROM categories LIMIT $offset, $results_per_page";
+$result = $conn->query($sql);
 ?>
 
 <?php require 'layout.php'; ?>
@@ -58,6 +79,7 @@ $result = $conn->query($sql);
                 <th scope="col">ID</th>
                 <th scope="col">Name</th>
                 <th scope="col">Image</th>
+                <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -67,17 +89,45 @@ $result = $conn->query($sql);
                     echo "<tr>";
                     echo "<th scope='row'>" . $row["category_id"] . "</th>";
                     echo "<td>" . $row["name"] . "</td>";
-                    echo "<td><img src='../assets/images/" . basename($row["image"]) . "' width='100' height='100'></td>";
+                    echo "<td><img src='../assets/images/" . basename($row["image"]) . "' width='60' height='60'></td>";
+                    echo "<td>
+                            <form action='delete_category.php' method='post'>
+                                <input type='hidden' name='category_id' value='" . $row["category_id"] . "'>
+                                <button type='submit' class='btn btn-danger' onclick='return confirm(\"Are you sure you want to delete this category?\")'>
+                                    <i class='fa-regular fa-trash-can'></i> 
+                                </button>
+                            </form>
+                          <a href='edit_category.php?category_id=" . $row["category_id"] . "' class='btn btn-primary'>
+                            <i class='fa-regular fa-pen-to-square'></i> 
+                          </a>
+                        </td>";
                     echo "</tr>";
+                    
                 }
             } else {
-                echo "<tr><td colspan='3'>No categories found</td></tr>";
+                echo "<tr><td colspan='5'>No categories found</td></tr>";
             }
             ?>
-
         </tbody>
     </table>
-   
+
+    <!-- Pagination -->
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-end">
+            <li class="page-item <?php echo ($page <= 1) ? 'disabled' : ''; ?>">
+                <a class="page-link" href="?page=<?php echo ($page <= 1) ? 1 : ($page - 1); ?>">Previous</a>
+            </li>
+            <?php for ($i = 1; $i <= $total_pages; $i++) : ?>
+                <li class="page-item <?php echo ($page == $i) ? 'active' : ''; ?>">
+                    <a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+                </li>
+            <?php endfor; ?>
+            <li class="page-item <?php echo ($page >= $total_pages) ? 'disabled' : ''; ?>">
+                <a class="page-link" href="?page=<?php echo ($page >= $total_pages) ? $total_pages : ($page + 1); ?>">Next</a>
+            </li>
+        </ul>
+    </nav>
+
 </div>
 
 <?php require 'admin_footer.php'; ?>
