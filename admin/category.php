@@ -91,7 +91,7 @@ $result = $conn->query($sql);
                     echo "<td>" . $row["name"] . "</td>";
                     echo "<td><img src='../assets/images/" . basename($row["image"]) . "' width='60' height='60'></td>";
                     echo "<td>
-                            <form action='delete_category.php' method='post'>
+                            <form action='delete_category.php' method='post'> 
                                 <input type='hidden' name='category_id' value='" . $row["category_id"] . "'>
                                 <button type='submit' class='btn btn-danger' onclick='return confirm(\"Are you sure you want to delete this category?\")'>
                                     <i class='fa-regular fa-trash-can'></i> 

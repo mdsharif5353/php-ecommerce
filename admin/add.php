@@ -6,7 +6,6 @@ if (!isset($_SESSION['admin'])) {
 }
 
 // Database connection
-// Replace these credentials with your database connection details
 include '../includes/db_config.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['name']) && isset($_FILES['image'])) {
