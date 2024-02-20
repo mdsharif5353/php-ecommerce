@@ -21,7 +21,7 @@
         <div class="container-fluid">
             <a class="navbar-brand text-white fs-2" href="index.php">EchoTech</a>
             <div class="input-group w-50 text-center">
-                <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <input type="text" class="form-control" placeholder="Search products" aria-label="Search products" aria-describedby="button-addon2">
                 <button class="btn btn-outline-danger" type="button" id="button-addon2">Search</button>
             </div>
             <div class="d-none d-sm-block">

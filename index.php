@@ -42,7 +42,7 @@ $result_products = $conn->query($sql_products);
         echo '<div class="row row-cols-1 row-cols-md-4 g-1">';
         while ($row_product = $result_products->fetch_assoc()) {
             echo '<div class="col">';
-            echo '<div class="card h-100">';
+            echo '<div class="card h-100 shadow-sm ">';
             echo '<div class="image-container d-flex align-items-center justify-content-center">';
             echo '<img src="assets/images/' . basename($row_product["image"]) . '" class="card-img-top w-75 zoom-image" alt="Product Image">';
             echo '</div>';
@@ -51,10 +51,10 @@ $result_products = $conn->query($sql_products);
             echo '<h5 class="card-text">Price: ৳' . $row_product["price"] . '</h5>';
             echo '<div class="d-grid gap-2 mx-auto">
             <button class=" btn buyBtn" style="background-color:#EF3921;" >Buy Now</button>
-            <button class="btn btn-light" style="color:#EF3921;" >View Details </button>
             </div>';
-            echo '<a href="./user/pl_details.php?product_id=' . $row_product["product_code"] . '" class="btn btn-light" style="color:#EF3921;">View Details</a>';
-
+            echo '<div class="text-center">';
+            echo '<a href="./user/pl_details.php?product_id=' . $row_product["product_code"] . '" class="btn btn-light" style="color:#EF3921; display: inline-block;">View Details</a>';
+            echo '</div>';
             echo '</div>';
             echo '</div>';
             echo '</div>';
